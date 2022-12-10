@@ -98,10 +98,18 @@ const app = {
         }
         nextBtn.onclick = function() {
             _this.nextSong()
-            _this.isplaying=false
+            _this.isplaying=false       
+            
             player.classList.remove('playing')
 
         }
+        prevBtn.onclick = function() {
+            _this.prevSong()
+            _this.isplaying=false
+            
+            player.classList.remove('playing')
+        }
+
 
 
     },
@@ -110,6 +118,16 @@ const app = {
         if(this.currentIndex>=this.songs.length)
         {
             this.currentIndex=0
+        }
+        
+        this.loadCurrentSong()
+        
+    },
+    prevSong: function() {
+        this.currentIndex--
+        if(this.currentIndex<0)
+        {
+            this.currentIndex = this.songs.length
         }
         this.loadCurrentSong()
     },
@@ -141,6 +159,7 @@ const app = {
         heading.textContent = this.currentSong.name
         thumb.style.backgroundImage = `url(${this.currentSong.image})`
         audio.src = this.currentSong.path
+        
     },
     start: function(){
         this.defineProperties()
